@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import {useDispatch} from 'react-redux';
+
+import { saveComment } from '../reducers/comments'
 
 const CommentBox = () => {
-  const [ value, setValue ] = useState('')
+  const [ value, setValue ] = useState('');
+  const dispatch = useDispatch();
 
   const textAreaChangeHandler = (e) => {
     setValue(e.target.value)
@@ -9,7 +13,8 @@ const CommentBox = () => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-
+    dispatch(saveComment(value));
+    
     setValue('')
   }
 
